@@ -1,6 +1,7 @@
 package org.home.encapsulation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Invoice {
@@ -26,16 +27,25 @@ public class Invoice {
     }
 
     public List<Payment> getPayments() {
-        return payments;
+        return Collections.unmodifiableList(payments);
     }
 
     public boolean isPaid() {
         return paid;
     }
 
-    public void setPaid(boolean paid) {
-        this.paid = paid;
+    public void addPayments(Payment payment) {
+        this.payments.add(payment);
+        if(totalOfPayments() > this.value){
+            this.paid = true;
+        }
     }
 
-
+    private double totalOfPayments() {
+        double total=0;
+        for (Payment p : payments){
+            total += p.getValue();
+        }
+        return total;
+    }
 }
