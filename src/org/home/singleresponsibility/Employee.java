@@ -39,4 +39,9 @@ public class Employee {
     public void setSalaryBase(double salaryBase) {
         this.salaryBase = salaryBase;
     }
+    public double calcSalary() {
+        return typeOfEmployee.getRule().calc(this);
+    }
+
+
 }
