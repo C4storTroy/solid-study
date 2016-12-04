@@ -1,10 +1,16 @@
 package org.home.liskov;
 
-public class StudentAccount extends SimpleAccount {
+public class StudentAccount{
     private int miles;
 
-    public void deposita(double value) {
-        super.deposit(value);
+    private ChangeBalance changeBalance;
+
+    public StudentAccount(){
+        changeBalance = new ChangeBalance();
+    }
+
+    public void deposit(double value) {
+        changeBalance.deposit(value);
         this.miles += (int)value;
     }
 
@@ -12,8 +18,7 @@ public class StudentAccount extends SimpleAccount {
         return miles;
     }
 
-    @Override
-    public void payMore() {
-        throw new RuntimeException("do not pay more");
+    public double getBalance(){
+        return changeBalance.getBalance();
     }
 }

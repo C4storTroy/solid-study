@@ -8,11 +8,11 @@ public class InvestimentProcessor {
 
     public static void main(String[] args) {
 
-        for (SimpleAccount conta : bankAccounts()) {
-            conta.payMore();
+        for (SimpleAccount account : bankAccounts()) {
+            account.payMore();
 
             System.out.println("Novo Saldo:");
-            System.out.println(conta.getBalance());
+
         }
     }
 

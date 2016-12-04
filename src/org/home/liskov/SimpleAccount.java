@@ -1,29 +1,29 @@
 package org.home.liskov;
 
 public class SimpleAccount {
-    protected double balance;
+
+
+
+    private ChangeBalance changeBalance;
+
+
 
     public SimpleAccount() {
-        this.balance = 0;
+        this.changeBalance =  new ChangeBalance();
     }
 
-    public void deposit(double value) {
-        this.balance += value;
+
+    public void draw(double value){
+        changeBalance.draw(value);
     }
 
-    public void draw(double value) {
-        if (value <= this.balance) {
-            this.balance -= value;
-        } else {
-            throw new IllegalArgumentException();
-        }
+    public void deposit(double value){
+        changeBalance.deposit(value);
     }
 
     public void payMore() {
-        this.balance += this.balance * 0.01;
+        this.changeBalance.payMore(1.1);
     }
 
-    public double getBalance() {
-        return balance;
-    }
+
 }
