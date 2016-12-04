@@ -1,7 +1,9 @@
 package org.home.usinginterfaces;
 
-public class InvoiceDAO {
-    public void save(InvoiceFinal inf) {
+public class InvoiceDAO implements ActionAfterGenerateInvoice {
+
+    @Override
+    public void execute(InvoiceFinal inf) {
         System.out.println("save inf on database");
     }
 }

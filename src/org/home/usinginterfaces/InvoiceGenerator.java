@@ -1,13 +1,13 @@
 package org.home.usinginterfaces;
 
+import java.util.List;
+
 public class InvoiceGenerator {
 
-    private final SendEmail email;
-    private final InvoiceDAO dao;
+    private List<ActionAfterGenerateInvoice> actions;
 
-    public InvoiceGenerator(SendEmail email, InvoiceDAO dao) {
-        this.email = email;
-        this.dao = dao;
+    public InvoiceGenerator(List<ActionAfterGenerateInvoice> actions) {
+        this.actions = actions;
     }
 
     public InvoiceFinal gera(Invoice invoice) {
@@ -16,8 +16,9 @@ public class InvoiceGenerator {
 
         InvoiceFinal inf = new InvoiceFinal(valor, simpleTaxOver(valor));
 
-        email.sendEmail(inf);
-        dao.save(inf);
+        for(ActionAfterGenerateInvoice action: actions){
+            action.execute(inf);
+        }
 
         return inf;
     }
