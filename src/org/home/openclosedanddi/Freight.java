@@ -1,8 +1,9 @@
 package org.home.openclosedanddi;
 
-public class Freight {
+public class Freight implements DeliveryService{
 
-    public double deliverTo(String city) {
+    @Override
+    public double to(String city) {
         if("Wellington".equals(city.toUpperCase())) {
             return 15;
         }
